@@ -38,7 +38,7 @@ class DetailIngredientCell: UICollectionViewCell {
                 avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 5),
                 avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
                 avatarImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
-                avatarImageView.heightAnchor.constraint(equalToConstant: 95),
+                avatarImageView.bottomAnchor.constraint(equalTo: bottomAnchor,constant: -2),
                 
                 titleLabel.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor,constant: 5),
                 titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),

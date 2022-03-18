@@ -33,6 +33,7 @@
 		06EAE14827E3C8AD009FC1D7 /* IngredientDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EAE14727E3C8AD009FC1D7 /* IngredientDetailView.swift */; };
 		06EAE14A27E3CA91009FC1D7 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EAE14927E3CA91009FC1D7 /* Ingredient.swift */; };
 		06EAE14C27E3E7D0009FC1D7 /* IngredientDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EAE14B27E3E7D0009FC1D7 /* IngredientDetailViewController.swift */; };
+		C2C9D54027E473D000B61702 /* CocktailImageFullScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C9D53F27E473D000B61702 /* CocktailImageFullScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		06EAE14727E3C8AD009FC1D7 /* IngredientDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientDetailView.swift; sourceTree = "<group>"; };
 		06EAE14927E3CA91009FC1D7 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		06EAE14B27E3E7D0009FC1D7 /* IngredientDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientDetailViewController.swift; sourceTree = "<group>"; };
+		C2C9D53F27E473D000B61702 /* CocktailImageFullScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailImageFullScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 				062C106427E3ABED0065109C /* RecipeSheetController.swift */,
 				06EAE14727E3C8AD009FC1D7 /* IngredientDetailView.swift */,
 				06EAE14B27E3E7D0009FC1D7 /* IngredientDetailViewController.swift */,
+				C2C9D53F27E473D000B61702 /* CocktailImageFullScreen.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				06EAE14C27E3E7D0009FC1D7 /* IngredientDetailViewController.swift in Sources */,
 				067896B727D960EC0091D454 /* CocktailAvatarView.swift in Sources */,
 				062C106527E3ABED0065109C /* RecipeSheetController.swift in Sources */,
+				C2C9D54027E473D000B61702 /* CocktailImageFullScreen.swift in Sources */,
 				06EAE14A27E3CA91009FC1D7 /* Ingredient.swift in Sources */,
 				062C105027DE1F5A0065109C /* UIViewController+Ext.swift in Sources */,
 				062C105427DE8E2C0065109C /* CocktailDetailImageView.swift in Sources */,
@@ -377,7 +381,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -432,7 +436,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -449,7 +453,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = LU6U7Y33KA;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CocktailProject/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

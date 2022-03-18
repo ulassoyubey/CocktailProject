@@ -99,15 +99,5 @@ struct SearchDrink: Codable,Hashable{
         
         return measures
     }
-    
-    func getMeasuresWithIngredients() -> [String:String] {
-        var dict = [String:String]()
-        
-        for (index,ingredient) in getIngredients().enumerated() {
-            dict[ingredient] = getMeasures()[index]
-        }
-        return dict
-    }
-
 }
 

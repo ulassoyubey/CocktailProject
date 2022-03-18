@@ -28,7 +28,9 @@ class RecipeSheetController: UIViewController, UITableViewDataSource, UITableVie
     
     convenience init(recipe:String) {
         self.init(nibName: nil, bundle: nil)
-        self.recipeText = recipe.components(separatedBy: ".").filter { !$0.isEmpty}
+        self.recipeText = recipe.components(separatedBy: ".").map({ str in
+            str.trimmingCharacters(in: .whitespacesAndNewlines)
+        }).filter { !$0.isEmpty }
         configureSheet()
         configureTitle()
         configureImage()
@@ -63,6 +65,7 @@ class RecipeSheetController: UIViewController, UITableViewDataSource, UITableVie
     private func configureTitle(){
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.text = "How To Mix ?"
+        titleLabel.textColor = .systemOrange
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.topAnchor,constant: 30),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 10),

@@ -64,7 +64,7 @@ class CocktailInformationStack: UIStackView {
         addArrangedSubview(mainStackView)
         mainStackView.axis = .horizontal
         mainStackView.distribution = .equalSpacing
-        mainStackView.alignment = .firstBaseline
+        mainStackView.alignment = .center
         mainStackView.addArrangedSubview(glassStack)
         mainStackView.addArrangedSubview(firstHorizontalDivider)
         mainStackView.addArrangedSubview(drinkStack)
@@ -80,6 +80,16 @@ class CocktailInformationStack: UIStackView {
         glassStack.addArrangedSubview(glassType)
         glassTitle.text = "Glass Type"
         glassType.text = "Margarita Glass"
+        glassType.numberOfLines = 0
+        glassStack.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate(
+            [
+                glassType.trailingAnchor.constraint(equalTo: glassStack.trailingAnchor, constant: -5),
+                glassType.leadingAnchor.constraint(equalTo: glassStack.leadingAnchor, constant: 5),
+                glassStack.widthAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width / 3 ) - 1)
+            ]
+        )
     }
     
     private func configureDrinkType(){
@@ -90,6 +100,12 @@ class CocktailInformationStack: UIStackView {
         drinkStack.addArrangedSubview(drinkType)
         drinkTypeTitle.text = "Drink Type"
         drinkType.text = "Classical"
+        
+        NSLayoutConstraint.activate(
+            [
+                drinkStack.widthAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width / 3 ) - 1)
+            ]
+        )
     }
     
     private func configureCategory(){
@@ -100,6 +116,11 @@ class CocktailInformationStack: UIStackView {
         categoryStack.addArrangedSubview(category)
         categoryTitle.text = "Category"
         category.text = "Classical"
+        NSLayoutConstraint.activate(
+            [
+                categoryStack.widthAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width / 3 ) - 1)
+            ]
+        )
     }
     
     

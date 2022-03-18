@@ -11,13 +11,21 @@ class DrinkDetailViewController: UIViewController, UIGestureRecognizerDelegate,U
     
     var drink: SearchDrink!
     
+    private let verticalDivider:UIView = {
+       let view = UIView()
+        view.backgroundColor = .systemOrange
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private let informationStackView = CocktailInformationStack()
     
     private let mixButton = CocktailButton(title: "Start Mixing")
     
     private let collectionView:UICollectionView = {
        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 30
         layout.sectionInset = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
@@ -47,6 +55,10 @@ class DrinkDetailViewController: UIViewController, UIGestureRecognizerDelegate,U
         configureNavbar()
         configureCollectionView()
         configureButton()
+        let tabGesture = UITapGestureRecognizer(target: self, action: #selector(openImage))
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(tabGesture)
+
     }
         
     override func viewWillAppear(_ animated: Bool) {
@@ -56,7 +68,7 @@ class DrinkDetailViewController: UIViewController, UIGestureRecognizerDelegate,U
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        tabBarController?.tabBar.isHidden = false
+        //tabBarController?.tabBar.isHidden = false
     }
     
     override func viewDidLayoutSubviews() {
@@ -76,16 +88,24 @@ class DrinkDetailViewController: UIViewController, UIGestureRecognizerDelegate,U
             imageView.topAnchor.constraint(equalTo: view.topAnchor),
             imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            imageView.heightAnchor.constraint(equalToConstant: 450),
         ])
+    }
+    @objc private func openImage(){
+        print("clicked")
+            let vc = CocktailImageFullScreen(url: self.drink.strDrinkThumb)
+            self.navigationController?.pushViewController(vc, animated: true)
     }
         
     private func configureNavbar(){
         navigationController?.navigationBar.topItem?.backButtonDisplayMode = .minimal
+        navigationController?.navigationBar.tintColor = .systemOrange
     }
     
     private func configureDummy(){
         view.addSubview(dummy)
         dummy.addSubview(cocktailName)
+        dummy.addSubview(verticalDivider)
         dummy.addSubview(informationStackView)
         informationStackView.setData(drink: drink)
         cocktailName.text = drink.strDrink
@@ -97,9 +117,14 @@ class DrinkDetailViewController: UIViewController, UIGestureRecognizerDelegate,U
             
             cocktailName.topAnchor.constraint(equalTo: dummy.topAnchor, constant: 10),
             cocktailName.centerXAnchor.constraint(equalTo: dummy.centerXAnchor),
-            informationStackView.topAnchor.constraint(equalTo: cocktailName.topAnchor, constant: 60),
-            informationStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 20),
-            informationStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -20)
+            
+            verticalDivider.heightAnchor.constraint(equalToConstant: 2),
+            verticalDivider.topAnchor.constraint(equalTo: cocktailName.bottomAnchor, constant: 2),
+            verticalDivider.centerXAnchor.constraint(equalTo: dummy.centerXAnchor),
+            verticalDivider.widthAnchor.constraint(equalTo: cocktailName.widthAnchor),
+            informationStackView.topAnchor.constraint(equalTo: verticalDivider.bottomAnchor, constant: 30),
+            informationStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 0),
+            informationStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: 0)
             
         ])
     }
@@ -133,12 +158,12 @@ class DrinkDetailViewController: UIViewController, UIGestureRecognizerDelegate,U
     private func configureCollectionView(){
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = false
         dummy.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: informationStackView.topAnchor,constant: 40),
-            collectionView.heightAnchor.constraint(equalToConstant: 190),
+            collectionView.topAnchor.constraint(equalTo: informationStackView.topAnchor,constant: 60),
+            collectionView.heightAnchor.constraint(equalToConstant: 270),
             collectionView.leadingAnchor.constraint(equalTo: dummy.leadingAnchor,constant: 20),
             collectionView.trailingAnchor.constraint(equalTo: dummy.trailingAnchor,constant: -20)
         ])
@@ -159,8 +184,9 @@ class DrinkDetailViewController: UIViewController, UIGestureRecognizerDelegate,U
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return .init(width: (view.frame.width / 3) - 30, height: 100)
+        return .init(width: (view.frame.width / 3) - 30, height: 95)
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }

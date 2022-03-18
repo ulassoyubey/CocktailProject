@@ -7,20 +7,10 @@
 
 import UIKit
 
-class CocktailDetailImageView: UICollectionReusableView {
+class CocktailDetailImageView: UIView {
     
 
     let imageView = UIImageView()
-    
-    var cocktailText:String!
-    
-    
-    let containerView: UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: 0
-                                        , width: UIScreen.main.bounds.width, height: 450))
-        view.layer.masksToBounds = true
-        return view
-    }()
 
     let placeholderImage = UIImage(named: "avatar-placeholder")!
 
@@ -36,12 +26,19 @@ class CocktailDetailImageView: UICollectionReusableView {
     
     
     private func configure() {
-        addSubview(containerView)
-        imageView.frame = containerView.bounds
+        addSubview(imageView)
         imageView.contentMode = .scaleAspectFill
         imageView.image = placeholderImage
-        containerView.addSubview(imageView)
-        containerView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(
+            [
+                imageView.topAnchor.constraint(equalTo: topAnchor),
+                imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+                imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+                imageView.heightAnchor.constraint(equalToConstant: 450)
+            ]
+        )
+        
     }
         
     func downloadImage(fromUrl url: String){

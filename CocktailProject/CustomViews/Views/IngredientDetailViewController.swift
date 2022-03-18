@@ -24,6 +24,7 @@ class IngredientDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemGray2.withAlphaComponent(0.5)
         prepareDownloads()
         configureScrollView()
         configureWrapperView()

@@ -25,7 +25,7 @@ class DrinkDetailViewController: UIViewController, UIGestureRecognizerDelegate,U
     private let collectionView:UICollectionView = {
        let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 30
+        layout.minimumLineSpacing = 15
         layout.sectionInset = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
@@ -53,8 +53,8 @@ class DrinkDetailViewController: UIViewController, UIGestureRecognizerDelegate,U
         configureHeaderLayout()
         configureDummy()
         configureNavbar()
-        configureCollectionView()
         configureButton()
+        configureCollectionView()
         let tabGesture = UITapGestureRecognizer(target: self, action: #selector(openImage))
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(tabGesture)
@@ -135,7 +135,7 @@ class DrinkDetailViewController: UIViewController, UIGestureRecognizerDelegate,U
         mixButton.addTarget(self, action: #selector(openRecipe), for: .touchUpInside)
         dummy.addSubview(mixButton)
         NSLayoutConstraint.activate([
-            mixButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -20),
+            mixButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: 0),
             mixButton.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 20),
             mixButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -20),
             mixButton.heightAnchor.constraint(equalToConstant: 50)
@@ -163,7 +163,8 @@ class DrinkDetailViewController: UIViewController, UIGestureRecognizerDelegate,U
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: informationStackView.topAnchor,constant: 60),
-            collectionView.heightAnchor.constraint(equalToConstant: 270),
+            collectionView.bottomAnchor.constraint(equalTo: mixButton.topAnchor,constant: -5),
+            //collectionView.heightAnchor.constraint(equalToConstant: 270),
             collectionView.leadingAnchor.constraint(equalTo: dummy.leadingAnchor,constant: 20),
             collectionView.trailingAnchor.constraint(equalTo: dummy.trailingAnchor,constant: -20)
         ])
@@ -184,7 +185,7 @@ class DrinkDetailViewController: UIViewController, UIGestureRecognizerDelegate,U
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return .init(width: (view.frame.width / 3) - 30, height: 95)
+        return .init(width: (view.frame.width / 3) - 30, height: 125)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func configureTabbar(_ arrayOfTabbars:[UINavigationController]) -> UITabBarController{
         let tabbar = UITabBarController()
         let appearance = UITabBar.appearance()
-        appearance.tintColor = .yellow
+        appearance.tintColor = .systemOrange
         if #available(iOS 15, *){
             let tabAppearance = UITabBarAppearance()
             tabAppearance.configureWithOpaqueBackground()

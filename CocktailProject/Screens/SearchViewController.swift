@@ -21,7 +21,7 @@ class SearchViewController: HasLoadingViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.prefersLargeTitles = true
+        configureNavBar()
         configureCollectionView()
         searchDrink(searchValue: "margarita")
         configureDataSource()
@@ -33,7 +33,10 @@ class SearchViewController: HasLoadingViewController {
         self.tabBarController?.tabBar.isHidden = true
     }
     
-    
+    private func configureNavBar(){
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.systemOrange]
+    }
     
     func configureCollectionView(){
         view.addSubview(tableView)

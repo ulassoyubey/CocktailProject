@@ -49,5 +49,4 @@ class CocktailDetailImageView: UIView {
             }
         }
     }
-
 }

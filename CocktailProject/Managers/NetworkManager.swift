@@ -8,11 +8,10 @@
 import Foundation
 import UIKit
 
-class NetworkManager {
+class NetworkManager:SearchService {
     static let shared = NetworkManager()
     private let baseUrl = "https://www.thecocktaildb.com/api/json/v1/1/"
     let cache = NSCache<NSString,UIImage>()
-    private init(){}
     
     func searchDrinks(drinkName: String,completionHandler:@escaping (Result<Drinks,ErrorManager>) -> Void){
         let endpoint = baseUrl + "search.php?s=\(drinkName)"

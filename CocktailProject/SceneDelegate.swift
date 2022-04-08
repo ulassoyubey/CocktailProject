@@ -38,7 +38,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func createSearchNC() -> UINavigationController {
-        let vc = SearchViewController()
+        let searchService:SearchService = NetworkManager()
+        let searchViewModel = SearchViewModel(searchService: searchService)
+        let vc = SearchViewController(searchVM: searchViewModel)
         vc.title = "Cocktails"
         vc.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 1)
         return UINavigationController(rootViewController: vc)

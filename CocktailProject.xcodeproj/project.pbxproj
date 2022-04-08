@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0622D7E42800B3AB0086681B /* CategoriesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0622D7E32800B3AB0086681B /* CategoriesCollectionView.swift */; };
+		062A7A7228009CB300965516 /* HomePageLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062A7A7128009CB300965516 /* HomePageLabel.swift */; };
 		062C104927D9F8C00065109C /* DrinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062C104827D9F8C00065109C /* DrinkCell.swift */; };
 		062C104B27DA1DD90065109C /* CocktailBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062C104A27DA1DD90065109C /* CocktailBodyLabel.swift */; };
 		062C104D27DD36AF0065109C /* HasLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062C104C27DD36AF0065109C /* HasLoadingViewController.swift */; };
@@ -30,13 +32,24 @@
 		067896A527D7FFD30091D454 /* SearchDrink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067896A427D7FFD30091D454 /* SearchDrink.swift */; };
 		067896B127D939170091D454 /* CocktailTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067896B027D939170091D454 /* CocktailTitleLabel.swift */; };
 		067896B727D960EC0091D454 /* CocktailAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067896B627D960EC0091D454 /* CocktailAvatarView.swift */; };
-		06EAE14827E3C8AD009FC1D7 /* IngredientDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EAE14727E3C8AD009FC1D7 /* IngredientDetailView.swift */; };
+		06839F0727F8953F00C59947 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06839F0627F8953F00C59947 /* SearchViewModel.swift */; };
+		06839F0927FB8FE500C59947 /* DrinkDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06839F0827FB8FE500C59947 /* DrinkDetailViewModel.swift */; };
+		06839F0B27FC9B9C00C59947 /* IngredientDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06839F0A27FC9B9C00C59947 /* IngredientDetailViewModel.swift */; };
+		06839F0E28006ADC00C59947 /* TopHeaderCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06839F0D28006ADC00C59947 /* TopHeaderCollectionView.swift */; };
+		06839F1028006B2900C59947 /* TopHeaderCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06839F0F28006B2900C59947 /* TopHeaderCollectionViewModel.swift */; };
+		06839F1228006BD600C59947 /* TopHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06839F1128006BD600C59947 /* TopHeaderCollectionViewCell.swift */; };
+		06839F1428006D2400C59947 /* TopHeaderImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06839F1328006D2400C59947 /* TopHeaderImageView.swift */; };
+		06DB166B2800B6EE00C5F0A9 /* HomeHeaderCRV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DB166A2800B6EE00C5F0A9 /* HomeHeaderCRV.swift */; };
+		06DB166D2800BBDB00C5F0A9 /* CategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DB166C2800BBDB00C5F0A9 /* CategoriesViewModel.swift */; };
 		06EAE14A27E3CA91009FC1D7 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EAE14927E3CA91009FC1D7 /* Ingredient.swift */; };
 		06EAE14C27E3E7D0009FC1D7 /* IngredientDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EAE14B27E3E7D0009FC1D7 /* IngredientDetailViewController.swift */; };
+		48203C6A6FA1C0C7B61BBA00 /* Pods_CocktailProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A295E92B314D74F202C3F8D /* Pods_CocktailProject.framework */; };
 		C2C9D54027E473D000B61702 /* CocktailImageFullScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C9D53F27E473D000B61702 /* CocktailImageFullScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0622D7E32800B3AB0086681B /* CategoriesCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionView.swift; sourceTree = "<group>"; };
+		062A7A7128009CB300965516 /* HomePageLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageLabel.swift; sourceTree = "<group>"; };
 		062C104827D9F8C00065109C /* DrinkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkCell.swift; sourceTree = "<group>"; };
 		062C104A27DA1DD90065109C /* CocktailBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailBodyLabel.swift; sourceTree = "<group>"; };
 		062C104C27DD36AF0065109C /* HasLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasLoadingViewController.swift; sourceTree = "<group>"; };
@@ -62,9 +75,20 @@
 		067896A427D7FFD30091D454 /* SearchDrink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDrink.swift; sourceTree = "<group>"; };
 		067896B027D939170091D454 /* CocktailTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailTitleLabel.swift; sourceTree = "<group>"; };
 		067896B627D960EC0091D454 /* CocktailAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailAvatarView.swift; sourceTree = "<group>"; };
-		06EAE14727E3C8AD009FC1D7 /* IngredientDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientDetailView.swift; sourceTree = "<group>"; };
+		06839F0627F8953F00C59947 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		06839F0827FB8FE500C59947 /* DrinkDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkDetailViewModel.swift; sourceTree = "<group>"; };
+		06839F0A27FC9B9C00C59947 /* IngredientDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientDetailViewModel.swift; sourceTree = "<group>"; };
+		06839F0D28006ADC00C59947 /* TopHeaderCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopHeaderCollectionView.swift; sourceTree = "<group>"; };
+		06839F0F28006B2900C59947 /* TopHeaderCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopHeaderCollectionViewModel.swift; sourceTree = "<group>"; };
+		06839F1128006BD600C59947 /* TopHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
+		06839F1328006D2400C59947 /* TopHeaderImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopHeaderImageView.swift; sourceTree = "<group>"; };
+		06DB166A2800B6EE00C5F0A9 /* HomeHeaderCRV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderCRV.swift; sourceTree = "<group>"; };
+		06DB166C2800BBDB00C5F0A9 /* CategoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModel.swift; sourceTree = "<group>"; };
 		06EAE14927E3CA91009FC1D7 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		06EAE14B27E3E7D0009FC1D7 /* IngredientDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientDetailViewController.swift; sourceTree = "<group>"; };
+		27BA73FD213C2C5360F5AD6C /* Pods-CocktailProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocktailProject.release.xcconfig"; path = "Target Support Files/Pods-CocktailProject/Pods-CocktailProject.release.xcconfig"; sourceTree = "<group>"; };
+		3377BDFB14F31D70CF8D6E82 /* Pods-CocktailProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocktailProject.debug.xcconfig"; path = "Target Support Files/Pods-CocktailProject/Pods-CocktailProject.debug.xcconfig"; sourceTree = "<group>"; };
+		4A295E92B314D74F202C3F8D /* Pods_CocktailProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CocktailProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2C9D53F27E473D000B61702 /* CocktailImageFullScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailImageFullScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48203C6A6FA1C0C7B61BBA00 /* Pods_CocktailProject.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +134,7 @@
 			children = (
 				067896B027D939170091D454 /* CocktailTitleLabel.swift */,
 				062C104A27DA1DD90065109C /* CocktailBodyLabel.swift */,
+				062A7A7128009CB300965516 /* HomePageLabel.swift */,
 			);
 			path = Labels;
 			sourceTree = "<group>";
@@ -119,6 +145,7 @@
 				067896B627D960EC0091D454 /* CocktailAvatarView.swift */,
 				062C105327DE8E2C0065109C /* CocktailDetailImageView.swift */,
 				062C105927E130300065109C /* IngredientImageView.swift */,
+				06839F1328006D2400C59947 /* TopHeaderImageView.swift */,
 			);
 			path = ImageViews;
 			sourceTree = "<group>";
@@ -134,9 +161,9 @@
 		062C106927E3C7A30065109C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				06839F0C28006ABB00C59947 /* HomeViews */,
 				062C104C27DD36AF0065109C /* HasLoadingViewController.swift */,
 				062C106427E3ABED0065109C /* RecipeSheetController.swift */,
-				06EAE14727E3C8AD009FC1D7 /* IngredientDetailView.swift */,
 				06EAE14B27E3E7D0009FC1D7 /* IngredientDetailViewController.swift */,
 				C2C9D53F27E473D000B61702 /* CocktailImageFullScreen.swift */,
 			);
@@ -148,6 +175,8 @@
 			children = (
 				0678967627D60E340091D454 /* CocktailProject */,
 				0678967527D60E340091D454 /* Products */,
+				BF414FEC621B55993978C8BC /* Pods */,
+				E9BBB055FE3836F905E49E2B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -162,6 +191,7 @@
 		0678967627D60E340091D454 /* CocktailProject */ = {
 			isa = PBXGroup;
 			children = (
+				06839F0527F8953000C59947 /* ViewModels */,
 				062C106127E3AA2F0065109C /* Models */,
 				062C104E27DE1F470065109C /* Extensions */,
 				067896B327D9520C0091D454 /* Cells */,
@@ -214,8 +244,48 @@
 			children = (
 				062C105527E11D5B0065109C /* DetailCells */,
 				062C104827D9F8C00065109C /* DrinkCell.swift */,
+				06839F1128006BD600C59947 /* TopHeaderCollectionViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		06839F0527F8953000C59947 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				06839F0627F8953F00C59947 /* SearchViewModel.swift */,
+				06839F0827FB8FE500C59947 /* DrinkDetailViewModel.swift */,
+				06839F0A27FC9B9C00C59947 /* IngredientDetailViewModel.swift */,
+				06839F0F28006B2900C59947 /* TopHeaderCollectionViewModel.swift */,
+				06DB166C2800BBDB00C5F0A9 /* CategoriesViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		06839F0C28006ABB00C59947 /* HomeViews */ = {
+			isa = PBXGroup;
+			children = (
+				06839F0D28006ADC00C59947 /* TopHeaderCollectionView.swift */,
+				0622D7E32800B3AB0086681B /* CategoriesCollectionView.swift */,
+				06DB166A2800B6EE00C5F0A9 /* HomeHeaderCRV.swift */,
+			);
+			path = HomeViews;
+			sourceTree = "<group>";
+		};
+		BF414FEC621B55993978C8BC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3377BDFB14F31D70CF8D6E82 /* Pods-CocktailProject.debug.xcconfig */,
+				27BA73FD213C2C5360F5AD6C /* Pods-CocktailProject.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E9BBB055FE3836F905E49E2B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4A295E92B314D74F202C3F8D /* Pods_CocktailProject.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,9 +295,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0678968827D60E340091D454 /* Build configuration list for PBXNativeTarget "CocktailProject" */;
 			buildPhases = (
+				C06F3EBEF6AB45E26139C02A /* [CP] Check Pods Manifest.lock */,
 				0678967027D60E340091D454 /* Sources */,
 				0678967127D60E340091D454 /* Frameworks */,
 				0678967227D60E340091D454 /* Resources */,
+				5E8B2FD6074EBAF642E45C29 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -283,6 +355,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5E8B2FD6074EBAF642E45C29 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CocktailProject/Pods-CocktailProject-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CocktailProject/Pods-CocktailProject-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CocktailProject/Pods-CocktailProject-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C06F3EBEF6AB45E26139C02A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CocktailProject-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0678967027D60E340091D454 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -295,23 +409,33 @@
 				062C106527E3ABED0065109C /* RecipeSheetController.swift in Sources */,
 				C2C9D54027E473D000B61702 /* CocktailImageFullScreen.swift in Sources */,
 				06EAE14A27E3CA91009FC1D7 /* Ingredient.swift in Sources */,
+				06839F1228006BD600C59947 /* TopHeaderCollectionViewCell.swift in Sources */,
+				06839F0E28006ADC00C59947 /* TopHeaderCollectionView.swift in Sources */,
 				062C105027DE1F5A0065109C /* UIViewController+Ext.swift in Sources */,
 				062C105427DE8E2C0065109C /* CocktailDetailImageView.swift in Sources */,
 				0678968C27D60E570091D454 /* SearchViewController.swift in Sources */,
 				067896B127D939170091D454 /* CocktailTitleLabel.swift in Sources */,
 				062C104B27DA1DD90065109C /* CocktailBodyLabel.swift in Sources */,
+				06839F0927FB8FE500C59947 /* DrinkDetailViewModel.swift in Sources */,
 				067896A527D7FFD30091D454 /* SearchDrink.swift in Sources */,
 				067896A327D7FFB30091D454 /* ErrorManager.swift in Sources */,
 				062C105C27E39D0A0065109C /* CocktailInformationStack.swift in Sources */,
-				06EAE14827E3C8AD009FC1D7 /* IngredientDetailView.swift in Sources */,
 				0678967827D60E340091D454 /* AppDelegate.swift in Sources */,
+				06DB166B2800B6EE00C5F0A9 /* HomeHeaderCRV.swift in Sources */,
 				062C105827E12FA50065109C /* DetailIngredientCell.swift in Sources */,
+				062A7A7228009CB300965516 /* HomePageLabel.swift in Sources */,
+				06839F0727F8953F00C59947 /* SearchViewModel.swift in Sources */,
 				062C105A27E130300065109C /* IngredientImageView.swift in Sources */,
 				0678967A27D60E340091D454 /* SceneDelegate.swift in Sources */,
+				06839F1028006B2900C59947 /* TopHeaderCollectionViewModel.swift in Sources */,
+				06839F0B27FC9B9C00C59947 /* IngredientDetailViewModel.swift in Sources */,
+				06DB166D2800BBDB00C5F0A9 /* CategoriesViewModel.swift in Sources */,
 				0678969027D60E640091D454 /* FavoritesViewController.swift in Sources */,
 				062C104D27DD36AF0065109C /* HasLoadingViewController.swift in Sources */,
 				062C104927D9F8C00065109C /* DrinkCell.swift in Sources */,
 				0678968E27D60E5E0091D454 /* HomeViewController.swift in Sources */,
+				06839F1428006D2400C59947 /* TopHeaderImageView.swift in Sources */,
+				0622D7E42800B3AB0086681B /* CategoriesCollectionView.swift in Sources */,
 				062C105227DE8D830065109C /* DrinkDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -448,6 +572,7 @@
 		};
 		0678968927D60E340091D454 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3377BDFB14F31D70CF8D6E82 /* Pods-CocktailProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -463,6 +588,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(SRCROOT)/Pods",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
@@ -476,6 +602,7 @@
 		};
 		0678968A27D60E340091D454 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27BA73FD213C2C5360F5AD6C /* Pods-CocktailProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -491,6 +618,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(SRCROOT)/Pods",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;

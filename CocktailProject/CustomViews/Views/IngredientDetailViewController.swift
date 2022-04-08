@@ -11,33 +11,30 @@ class IngredientDetailViewController: UIViewController {
     
     let containerView = UIScrollView()
     let wrapperView = UIView()
-    var ingredientSource:Ingredient!
     let titleLabel = CocktailTitleLabel(fontSize: 30, textAligment: .center)
     let informationLabel = CocktailBodyLabel(fontSize: 20, textAligment: .center)
     let headerStackView = UIStackView()
     var imageViewUrl = ""
     let imageView = IngredientImageView(frame: .zero)
-    
     let informationText = CocktailTitleLabel(fontSize: 15, textAligment: .center)
     
-    var ingredientName:String!
+    var viewModel:IngredientViewModelProtocol! {
+        didSet {
+            viewModel.delegate = self
+        }
+    }
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray2.withAlphaComponent(0.5)
-        prepareDownloads()
+        prepare()
         configureScrollView()
         configureWrapperView()
         configureHeaderTexts()
         configureImageView()
         addDissappearGesture()
         configureUILabel()
-    }
-    
-    convenience init(ingredientName:String) {
-        self.init(nibName: nil, bundle: nil)
-        self.ingredientName = ingredientName
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -61,9 +58,9 @@ class IngredientDetailViewController: UIViewController {
     }
 
     
-    private func prepareDownloads(){
-        downloadData(ingName: ingredientName)
-        imageView.downloadImage(fromUrl: ingredientName)
+    private func prepare(){
+        fetchData(ingName: viewModel.ingredientName ?? "")
+        imageView.downloadImage(fromUrl: viewModel.ingredientName ?? "")
     }
     
     //View Configurations
@@ -95,24 +92,8 @@ class IngredientDetailViewController: UIViewController {
 
     }
     
-    private func setInformationLabel(ingredient:Ingredient){
-        DispatchQueue.main.async {
-            self.titleLabel.text = self.ingredientSource.strIngredient
-            self.informationLabel.text = self.ingredientSource.strType
-            self.informationText.text = self.ingredientSource.strDescription
-        }
-    }
-        
-    private func downloadData(ingName:String){
-        NetworkManager.shared.searchIngredient(ingredientName: ingName) { result in
-            switch result {
-            case .success(let ingredient):
-                self.ingredientSource = ingredient.ingredients[0]
-                self.setInformationLabel(ingredient: self.ingredientSource)
-            case .failure(let fail):
-                print(fail)
-            }
-        }
+    private func fetchData(ingName:String){
+        viewModel?.fetchIngredientDetail(ingName: ingName)
     }
     
     private func configureHeaderTexts(){
@@ -152,4 +133,19 @@ class IngredientDetailViewController: UIViewController {
         ])
     }
 
+}
+
+extension IngredientDetailViewController:IngredientViewModelDelegate {
+    func choosenIngredient(ingredientName: String) {
+        viewModel.ingredientName = ingredientName
+    }
+    
+    func setIngredientDetail(ingredient: Ingredients) {
+        guard let vmIngredient = viewModel.ingredientSource else {return}
+        DispatchQueue.main.async {
+            self.titleLabel.text = vmIngredient.strIngredient
+            self.informationLabel.text = vmIngredient.strType
+            self.informationText.text = vmIngredient.strDescription
+        }
+    }
 }

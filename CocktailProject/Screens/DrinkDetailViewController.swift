@@ -9,8 +9,12 @@ import UIKit
 
 class DrinkDetailViewController: UIViewController, UIGestureRecognizerDelegate,UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
-    var drink: SearchDrink!
-    
+    var drinkDetailVM: DrinkDetailViewModel! {
+        didSet {
+            drinkDetailVM.delegate = self
+        }
+    }
+        
     private let verticalDivider:UIView = {
        let view = UIView()
         view.backgroundColor = .systemOrange
@@ -55,17 +59,17 @@ class DrinkDetailViewController: UIViewController, UIGestureRecognizerDelegate,U
         configureNavbar()
         configureButton()
         configureCollectionView()
+        drinkDetailVM.loadDrink()
         let tabGesture = UITapGestureRecognizer(target: self, action: #selector(openImage))
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(tabGesture)
-
     }
         
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = true
     }
-    
+        
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         //tabBarController?.tabBar.isHidden = false
@@ -75,13 +79,7 @@ class DrinkDetailViewController: UIViewController, UIGestureRecognizerDelegate,U
         super.viewDidLayoutSubviews()
     }
     
-    convenience init(selectedDrink:SearchDrink) {
-        self.init(nibName: nil, bundle: nil)
-        self.drink = selectedDrink
-    }
-    
     private func configureHeaderLayout(){
-        imageView.downloadImage(fromUrl: drink.strDrinkThumb)
         view.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -93,7 +91,7 @@ class DrinkDetailViewController: UIViewController, UIGestureRecognizerDelegate,U
     }
     @objc private func openImage(){
         print("clicked")
-            let vc = CocktailImageFullScreen(url: self.drink.strDrinkThumb)
+        let vc = CocktailImageFullScreen(url: drinkDetailVM.strInstructions!)
             self.navigationController?.pushViewController(vc, animated: true)
     }
         
@@ -107,8 +105,6 @@ class DrinkDetailViewController: UIViewController, UIGestureRecognizerDelegate,U
         dummy.addSubview(cocktailName)
         dummy.addSubview(verticalDivider)
         dummy.addSubview(informationStackView)
-        informationStackView.setData(drink: drink)
-        cocktailName.text = drink.strDrink
         NSLayoutConstraint.activate([
             dummy.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             dummy.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -143,7 +139,7 @@ class DrinkDetailViewController: UIViewController, UIGestureRecognizerDelegate,U
     }
     
     @objc private func openRecipe(){
-        let sheetViewController = RecipeSheetController(recipe: drink.strInstructions)
+        let sheetViewController = RecipeSheetController(recipe: drinkDetailVM.drink.strInstructions)
         if let sheetController = sheetViewController.sheetPresentationController {
             sheetController.detents = [.medium(), .large()]
             sheetController.preferredCornerRadius = 30
@@ -172,14 +168,14 @@ class DrinkDetailViewController: UIViewController, UIGestureRecognizerDelegate,U
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return drink.getIngredients().count
+        return drinkDetailVM.ingredientCount!
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailIngredientCell.reuseId, for: indexPath) as! DetailIngredientCell
         cell.layer.cornerRadius = 16
-        cell.set(drink: drink.getIngredients()[indexPath.row].prepareUrlForIngredient(),measure: drink.getMeasures()[indexPath.row])
+        cell.set(drink: drinkDetailVM.drink.getIngredients()[indexPath.row].prepareUrlForIngredient(),measure: drinkDetailVM.drink.getMeasures()[indexPath.row])
         return cell
     }
     
@@ -191,7 +187,8 @@ class DrinkDetailViewController: UIViewController, UIGestureRecognizerDelegate,U
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            let ingredientView = IngredientDetailViewController(ingredientName: self.drink.getIngredients()[indexPath.row].prepareUrlForIngredient())
+            let ingredientView = IngredientDetailViewController()
+            ingredientView.viewModel = IngredientDetailViewModel(ingredientName: self.drinkDetailVM.drink.getIngredients()[indexPath.row].prepareUrlForIngredient())
             ingredientView.modalPresentationStyle = .overCurrentContext
             self.present(ingredientView, animated: true, completion: nil)
         }
@@ -202,5 +199,20 @@ class DrinkDetailViewController: UIViewController, UIGestureRecognizerDelegate,U
 extension String {
     func prepareUrlForIngredient() ->String {
         return self.trimmingCharacters(in: .whitespaces).replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
+    }
+}
+
+extension DrinkDetailViewController:DrinkDetailDelegate {
+    
+    func setCocktailName(name:String) {
+        cocktailName.text = name
+    }
+
+    func setHeaderData(drink:SearchDrink) {
+        informationStackView.setData(drink: drink)
+    }
+    
+    func setImage() {
+        imageView.downloadImage(fromUrl: drinkDetailVM.drink.strDrinkThumb)
     }
 }

@@ -15,6 +15,7 @@ class IngredientImageView: UIImageView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
+        self.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: .carrot), animation: nil, transition: .crossDissolve(0.25))
     }
     
     
@@ -24,9 +25,11 @@ class IngredientImageView: UIImageView {
     
     
     private func configure() {
+        isSkeletonable = true
         clipsToBounds = true // sets the image to not have sharp corners in addition to the layer corner radius
         image = placeholderImage
         translatesAutoresizingMaskIntoConstraints = false
+        contentMode = .scaleToFill
     }
     
     func downloadImage(fromUrl ingredientName: String){
@@ -35,9 +38,9 @@ class IngredientImageView: UIImageView {
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.image = image
+                self.stopSkeletonAnimation()
+                self.hideSkeleton(reloadDataAfter: false, transition: .crossDissolve(0.25))
             }
         }
     }
-
-
 }

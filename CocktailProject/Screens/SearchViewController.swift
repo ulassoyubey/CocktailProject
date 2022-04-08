@@ -8,16 +8,24 @@
 import UIKit
 
 class SearchViewController: HasLoadingViewController {
-    
     enum Section {
         case main
     }
-    
+    weak var drinkDetailDelegate:DrinkDetailDelegate?
     var tableView = UITableView()
-    var drinkDataSource = Drinks(drinks: [])
     var dataSource: UITableViewDiffableDataSource<Section,SearchDrink>!
     let searchBar = UISearchBar()
+    private var searchViewModel:SearchViewModel!
     
+    init(searchVM:SearchViewModel) {
+        super.init(nibName: nil, bundle: nil)
+        self.searchViewModel = searchVM
+        self.searchViewModel.delegate = self
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,16 +57,8 @@ class SearchViewController: HasLoadingViewController {
 
     func searchDrink(searchValue: String) {
         presentLoading()
-        NetworkManager.shared.searchDrinks(drinkName: searchValue) { result in
-            self.dismissLoading()
-            switch result {
-            case .success(let drinks):
-                self.drinkDataSource = drinks
-                self.updateData()
-            case .failure(let error):
-                self.showToast(message: "No Cocktail Found with given name", font: .systemFont(ofSize: 12))
-            }
-        }
+        searchViewModel.fetchDrinks(searchedDrink: searchValue)
+        self.dismissLoading()
     }
     
     func configureDataSource() {
@@ -73,7 +73,7 @@ class SearchViewController: HasLoadingViewController {
     func updateData(){
         var snapshot = NSDiffableDataSourceSnapshot<Section,SearchDrink>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(drinkDataSource.drinks)
+        snapshot.appendItems(searchViewModel.drinkDataSource.drinks)
         DispatchQueue.main.async {
             self.dataSource.apply(snapshot, animatingDifferences: true)
         }
@@ -95,7 +95,8 @@ extension SearchViewController: UITableViewDelegate{
         return 110
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = DrinkDetailViewController(selectedDrink: drinkDataSource.drinks[indexPath.row])
+        let vc = DrinkDetailViewController()
+        vc.drinkDetailVM = DrinkDetailViewModel(drink: searchViewModel.drinkDataSource.drinks[indexPath.row])
         navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -113,3 +114,14 @@ extension String {
         return self.trimmingCharacters(in: .whitespaces).replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
     }
 }
+
+extension SearchViewController:SearchViewModelDelegate {
+    func updateSearchResult() {
+        self.updateData()
+    }
+    
+    func showNoDrink() {
+        self.showToast(message: "No Cocktail Found with given name", font: .systemFont(ofSize: 12))
+    }
+}
+

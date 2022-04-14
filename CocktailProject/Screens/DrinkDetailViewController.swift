@@ -26,6 +26,8 @@ class DrinkDetailViewController: UIViewController, UIGestureRecognizerDelegate,U
     
     private let mixButton = CocktailButton(title: "Start Mixing")
     
+    private let favButton = UIButton()
+    
     private let collectionView:UICollectionView = {
        let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -57,6 +59,7 @@ class DrinkDetailViewController: UIViewController, UIGestureRecognizerDelegate,U
         configureHeaderLayout()
         configureDummy()
         configureNavbar()
+        configureFavorites()
         configureButton()
         configureCollectionView()
         drinkDetailVM.loadDrink()
@@ -98,6 +101,22 @@ class DrinkDetailViewController: UIViewController, UIGestureRecognizerDelegate,U
     private func configureNavbar(){
         navigationController?.navigationBar.topItem?.backButtonDisplayMode = .minimal
         navigationController?.navigationBar.tintColor = .systemOrange
+    }
+    
+    private func configureFavorites(){
+        favButton.setBackgroundImage(UIImage(named: "favorites-empty"), for: .normal)
+        favButton.translatesAutoresizingMaskIntoConstraints = false
+        favButton.addTarget(self, action: #selector(favButtonTapped), for: .touchUpInside)
+        let rightBarButton = UIBarButtonItem(customView: favButton)
+        navigationItem.rightBarButtonItem = rightBarButton
+        rightBarButton.customView?.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        rightBarButton.customView?.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        drinkDetailVM.checkisExistInFavorites()
+
+    }
+    
+    @objc func favButtonTapped(){
+        drinkDetailVM.addOrRemoveFromFavorites()
     }
     
     private func configureDummy(){
@@ -203,6 +222,28 @@ extension String {
 }
 
 extension DrinkDetailViewController:DrinkDetailDelegate {
+    func presentFavoriteError() {
+        self.showToast(message: "Unable to add to favorites", font: UIFont.preferredFont(forTextStyle: .body, compatibleWith: .current))
+    }
+    
+    func presentAddFavoritesToast() {
+        let toastView = ToastMessageView(text: "Succesfully added to favorites", color: UIColor.systemGreen)
+        toastView.presentToast(view: self.view)
+    }
+    
+    func changeFavoritesButton() {
+        if drinkDetailVM.isFavorited {
+            favButton.setBackgroundImage(UIImage(named: "favorites-filled"), for: .normal)
+        } else {
+            favButton.setBackgroundImage(UIImage(named: "favorites-empty"), for: .normal)
+        }
+    }
+    
+    func presentRemoveFavoritesToast() {
+        let toastView = ToastMessageView(text: "Succesfully removed from favorites", color: UIColor.systemGray2)
+        toastView.presentToast(view: self.view)
+    }
+    
     
     func setCocktailName(name:String) {
         cocktailName.text = name

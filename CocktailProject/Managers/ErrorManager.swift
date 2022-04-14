@@ -12,4 +12,6 @@ enum ErrorManager: String, Error {
     case responseError = "responseError"
     case dataError = "dataError"
     case decodeError = "decodeError"
+    case duplicateData = "duplicatedData"
+    case noDataFound = "no data found"
 }

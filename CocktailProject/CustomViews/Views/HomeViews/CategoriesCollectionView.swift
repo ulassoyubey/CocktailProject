@@ -29,8 +29,7 @@ class CategoriesCollectionView: UICollectionViewController,UICollectionViewDeleg
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView!.register(DetailIngredientCell.self, forCellWithReuseIdentifier: DetailIngredientCell.reuseId)
-        self.collectionView.register(HomeHeaderCRV.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
+        self.collectionView!.register(CategoriesCell.self, forCellWithReuseIdentifier: CategoriesCell.reuseId)
         setLayout()
     }
     
@@ -39,6 +38,8 @@ class CategoriesCollectionView: UICollectionViewController,UICollectionViewDeleg
         layout.minimumLineSpacing = 10
         layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         collectionView.contentInsetAdjustmentBehavior = .never
+        layout.scrollDirection = .horizontal
+        collectionView.showsHorizontalScrollIndicator = false
         collectionView.setCollectionViewLayout(layout, animated: false)
         collectionView.backgroundColor = .white
     }
@@ -53,31 +54,16 @@ class CategoriesCollectionView: UICollectionViewController,UICollectionViewDeleg
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailIngredientCell.reuseId, for: indexPath) as! DetailIngredientCell
-        cell.backgroundColor = .systemGray6
-        
-        cell.layer.cornerRadius = 12
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesCell.reuseId, for: indexPath) as! CategoriesCell
+        cell.backgroundColor = #colorLiteral(red: 1, green: 0.6645795107, blue: 0.2553189099, alpha: 1)
+        cell.clipsToBounds = true
+        cell.layer.cornerRadius = 18
         cell.set(drink: viewModel.categories[indexPath.item], measure: viewModel.categories[indexPath.item])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: (view.frame.width / 3) - 20, height: view.frame.height / 2 - 30)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 45)
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionView.elementKindSectionHeader {
-             let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! HomeHeaderCRV
-            sectionHeader.headerLabel.text = "Categories"
-             return sectionHeader
-        } else {
-             return UICollectionReusableView()
-        }
-
+        return .init(width: (view.frame.width / 2) - 40, height: view.frame.height)
     }
 
     // MARK: UICollectionViewDelegate

@@ -1,17 +1,17 @@
 //
-//  DetailIngredientCell.swift
+//  SquareDrinkCell.swift
 //  CocktailProject
 //
-//  Created by ulas soyubey on 15.03.2022.
+//  Created by ulas soyubey on 9.04.2022.
 //
 
 import UIKit
 
-class DetailIngredientCell: UICollectionViewCell {
+class SquareDrinkCell: UICollectionViewCell {
     
-    static let reuseId = "IngredientCell"
+    static let reuseId = "squareDrinkCell"
 
-    let avatarImageView = IngredientImageView(frame: .zero)
+    let avatarImageView = TopHeaderImageView(frame: .zero)
       let titleLabel = CocktailBodyLabel(fontSize: 15, textAligment: .center)
       
     override init(frame: CGRect) {
@@ -23,15 +23,16 @@ class DetailIngredientCell: UICollectionViewCell {
          fatalError("init(coder:) has not been implemented")
      }
       
-    func set(drink:String,measure:String?){
-        titleLabel.text = measure
-        avatarImageView.downloadImage(fromUrl: drink)
-      }
-      
+    func setCell(imageUrl:String,drinkName:String){
+        avatarImageView.downloadImage(fromUrl: imageUrl)
+        titleLabel.text = drinkName
+    }
+
       private func configure(){
           isSkeletonable = true
-          backgroundColor = .systemGray6
           addSubview(avatarImageView)
+          avatarImageView.clipsToBounds = true
+          avatarImageView.layer.cornerRadius = 20
           addSubview(titleLabel)
 
           NSLayoutConstraint.activate([

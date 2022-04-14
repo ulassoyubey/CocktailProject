@@ -26,10 +26,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func configureTabbar(_ arrayOfTabbars:[UINavigationController]) -> UITabBarController{
         let tabbar = UITabBarController()
         let appearance = UITabBar.appearance()
+        appearance.backgroundColor = .black
         appearance.tintColor = .systemOrange
         if #available(iOS 15, *){
             let tabAppearance = UITabBarAppearance()
             tabAppearance.configureWithOpaqueBackground()
+            tabAppearance.backgroundColor = .white
             appearance.standardAppearance = tabAppearance
             appearance.scrollEdgeAppearance = tabAppearance
         }
@@ -42,21 +44,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let searchViewModel = SearchViewModel(searchService: searchService)
         let vc = SearchViewController(searchVM: searchViewModel)
         vc.title = "Cocktails"
-        vc.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 1)
+        vc.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 1)
         return UINavigationController(rootViewController: vc)
     }
     
     func createHomeNC() -> UINavigationController {
         let vc = HomeViewController()
         vc.title = "Home"
-        vc.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 0)
+        vc.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
+        vc.tabBarItem.selectedImage = UIImage(systemName: "house.fill")
         return UINavigationController(rootViewController: vc)
     }
     
     func createFavoritesNC() -> UINavigationController {
-        let vc = FavoritesViewController()
+        let viewModel = FavoritesViewModel()
+        let vc = FavoritesViewController(viewModel: viewModel)
         vc.title = "Favorites"
-        vc.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 2)
+        vc.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(systemName: "suit.heart"), tag: 2)
+        vc.tabBarItem.selectedImage = UIImage(systemName: "suit.heart.fill")
         return UINavigationController(rootViewController: vc)
     }
     func sceneDidDisconnect(_ scene: UIScene) {

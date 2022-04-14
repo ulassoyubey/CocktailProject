@@ -12,6 +12,7 @@ class SearchViewController: HasLoadingViewController {
         case main
     }
     weak var drinkDetailDelegate:DrinkDetailDelegate?
+    
     var tableView = UITableView()
     var dataSource: UITableViewDiffableDataSource<Section,SearchDrink>!
     let searchBar = UISearchBar()
@@ -38,7 +39,7 @@ class SearchViewController: HasLoadingViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.tabBarController?.tabBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     private func configureNavBar(){
@@ -124,4 +125,29 @@ extension SearchViewController:SearchViewModelDelegate {
         self.showToast(message: "No Cocktail Found with given name", font: .systemFont(ofSize: 12))
     }
 }
+
+extension SearchViewController:UIScrollViewDelegate{
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0{
+            //scrolling down
+            changeTabBar(hidden: true, animated: true)
+        }
+        else{
+            //scrolling up
+            changeTabBar(hidden: false, animated: true)
+        }
+    }
+
+    func changeTabBar(hidden:Bool, animated: Bool){
+        let tabBar = self.tabBarController?.tabBar
+        let offset = (hidden ? UIScreen.main.bounds.size.height : UIScreen.main.bounds.size.height - (tabBar?.frame.size.height)! )
+        if offset == tabBar?.frame.origin.y {return}
+        print("changing origin y position")
+        let duration:TimeInterval = (animated ? 0.5 : 0.0)
+        UIView.animate(withDuration: duration,
+                       animations: {tabBar!.frame.origin.y = offset},
+                       completion:nil)
+    }
+}
+
 
